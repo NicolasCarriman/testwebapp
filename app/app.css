@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+body {
+  overflow: hidden;
+}
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+.bg-mask {
+  backdrop-filter: blur(50px);
+  z-index: -1;
+}
+
+.container-mask {
+  transition: all 1.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.appear>* {
+  opacity: 0;
+  animation: appear 1.2s ease-out;
+  animation-delay: var(--delay);
+  animation-fill-mode: forwards;
+}
+
+.rounded-mask {
+  --delay: 0s;
+  margin: auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(50%, -50%);
+  position: absolute;
+  z-index: -2;
+  opacity: 0;
+
+  border-radius: 50%;
+  filter: blur(14px);
+  animation: movin 10s cubic-bezier(0.175, 0.885, 0.32, 1.575) infinite;
+}
+
+@keyframes movin {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -100%);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translate(calc(50%), -50%);
+  }
+
+  70% {
+    opacity: 1;
+    transform: translate(calc(50%), -50%) scale(1.2);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -100%);
+  }
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+    transform: translateY(40%);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
