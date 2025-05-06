@@ -25,6 +25,11 @@ body {
   animation-fill-mode: forwards;
 }
 
+.hide {
+  animation: appear 1.2s ease-in-out reverse;
+  animation-fill-mode: forwards;
+}
+
 .rounded-mask {
   --delay: 0s;
   margin: auto;

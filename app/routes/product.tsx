@@ -1,5 +1,5 @@
-import Budget from "~/budget/budget";
+import Expenses from "~/budget/expenses";
 
 export default function Product() {
-    return <Budget />;
+    return <Expenses />;
 }
