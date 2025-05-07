@@ -1,3 +1,4 @@
+import { formatDate } from "~/utils/format";
 import type { Transaction } from "../../model/transaction";
 
 export const currentTransactions: Transaction[] = [
@@ -213,7 +214,7 @@ export const currentTransactions: Transaction[] = [
         monto: 12785.31
     }
 ].map((transaction, id) => ({
-    date: transaction.fecha,
+    date: formatDate(transaction.fecha),
     description: transaction.descripcion,
     ammount: transaction.monto,
     edit: false,

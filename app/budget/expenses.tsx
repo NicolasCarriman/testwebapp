@@ -7,7 +7,7 @@ import { formatTransaction } from '~/utils/format';
 import { useAlert } from '~/hooks/useAlert';
 
 function Expenses() {
-  const [transactions, setTransactions] = useState<Transaction[]>([]);
+  const [transactions, setTransactions] = useState<Transaction[]>(currentTransactions);
   const { alerts, showMessage } = useAlert(1200);
   const totalExpenses = transactions.reduce((acc, current) => acc + current.ammount, 0);
   const formRef = useRef<HTMLFormElement>(null);
@@ -31,10 +31,17 @@ function Expenses() {
     }
   }
 
-  const saveFormData = (e: FormEvent) => {
+  const saveFormData = async (e: FormEvent) => {
     e.preventDefault();
     const formData = new FormData(e.target as HTMLFormElement);
-    console.log(Object.fromEntries(formData))
+    const editedTransactions = Object.fromEntries(formData.entries());
+    const uploadedTransactions = transactions.map((transaction) => {
+      const updatedAmmount = Number(editedTransactions[transaction.id.toString()]);
+      if (isNaN(updatedAmmount)) return transaction;
+      return {...transaction, ammount: updatedAmmount};
+    });
+
+    await transactionService.post(uploadedTransactions)
   }
 
   useEffect(() => {
@@ -53,7 +60,7 @@ function Expenses() {
             edit={editValue}
             onSave={() => formRef.current && formRef.current.requestSubmit()} />
         </form>
-      </div>
+      </div> 
     </div>
   )
 }
