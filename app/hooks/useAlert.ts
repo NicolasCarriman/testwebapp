@@ -1,10 +1,5 @@
 import { useEffect, useState } from "react";
-
-interface IAlert {
-    type: 'success' | 'error',
-    message: string;
-    id: number;
-}
+import type { IAlert } from "~/model/alert";
 
 export const useAlert = (duration: number) => {
     const [alerts, setAlerts] = useState<Array<IAlert>>([]);

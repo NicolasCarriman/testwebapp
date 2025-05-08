@@ -5,8 +5,7 @@ const transactionServer = 'http://127.0.0.1:2200/budget/transactions';
 
 const get = async () => {
     try {
-        const result = await fetchData<RawTransaction[]>(transactionServer, 'GET');
-        return result;
+        return await fetchData<RawTransaction[]>(transactionServer, 'GET');
     } catch (e: any) {
         throw new Error(e.message)
     }

@@ -2,12 +2,12 @@
 export interface RawTransaction {
     transaction_id: number,
     transaction_description: string;
-    transcation_date: string;
+    transaction_date: string;
     transaction_value: number;
 }
 
 export interface Transaction {
-    date: string,
+    date: Date,
     description: string,
     id: number,
     ammount: number,
