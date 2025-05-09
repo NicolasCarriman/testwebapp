@@ -3,7 +3,8 @@ import { Link } from 'react-router';
 import { getAuthUrl } from '~/services/auth';
 
 function Product() {
-    const authUrl = getAuthUrl()
+    const authUrl = getAuthUrl();
+    console.log(authUrl)
 
     return (
         <div className='flex flex-col items-start ml-24 gap-8 justify-start pt-16 pb-4 h-[100dvh]'>
