@@ -90,6 +90,8 @@ function Structure() {
     const [workStations, setWorkStations] = useState(workStationsData);
     const selectedWorkStation = workStations.find(station => station.selected === true) || null;
 
+    const selectWorkStation = (id: number) =>  setWorkStations(old => old.map(station=> station.id === id ? {...station, selected: true} : {...station, selected: false })) 
+
     return (
         <div className='p-4'>
             <div className='flex gap-20'>
@@ -104,8 +106,8 @@ function Structure() {
                     </fieldset>
                 </div>
             </div>
-            <WorkStationLinear data={workStations} />
-            <StructureDetail />
+            <WorkStationLinear onSelect={selectWorkStation} data={workStations} />
+            <StructureDetail data={selectedWorkStation} />
         </div>
     )
 }

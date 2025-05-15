@@ -4,7 +4,7 @@ import WorkStationThreeD from './workStationThreeDe';
 import { IoSettingsOutline } from 'react-icons/io5';
 
 
-function WorkStationLinear({ data }: { data: any[] }) {
+function WorkStationLinear({ data, onSelect }: { data: any[], onSelect(id: number): void }) {
     const [workStations, setWorkStations] = useState(data);
 
     const addWorkStation = () => {
@@ -21,7 +21,7 @@ function WorkStationLinear({ data }: { data: any[] }) {
                 <main className='grid w-full gap-x-18 gap-y-2 py-2 overflow-auto auto-cols-[12rem]' style={{ gridTemplateColumns: 'repeat(auto-fill, 1fr)' }}>
                     {
                         workStations.map(station => (
-                            <div className='row-start-1' key={station.id}>
+                            <div className='row-start-1' key={station.id} onClick={() => onSelect(station.id)}>
                                 <div className='group h-full flex flex-col justify-between cursor-pointer border-gray-400 rounded bg-gray-200 p-2 border-1 hover:border-[#4c4cff] hover:border-1  transition-all duration-75 ease-in'>
                                     <div>
                                         <p className='text-nowrap group-hover:text-[#4c4cff]'>{station.description}</p>
